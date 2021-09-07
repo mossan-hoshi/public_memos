@@ -92,6 +92,14 @@ void main(){ //
   - dot(p)
   - p.x*p.x + p.y*p.y + p.z*p.z + p.a*p.a [pがVec4の場合]
 - abs: 絶対値
-- abs
-# Tips
-1. 「座標の正規化」
+- min/max
+- clamp
+- fract=clamp(val,0.0,1.0)
+- floor
+# Tips・ルール
+- 値は0.0~1.0でクリップされる
+- 座標の正規化は主に3通り
+  1. FC.xy / r;               //  0.0~1.0
+  2. FC.xy / r * 2.0 - 1.0;   // -1.0~1.0
+  3. (FC.xy * 2.0 - r)/ min(r.x,r.y) // 短辺において -1.0~1.0
+    - 画面によってアスペクト比が変わるのを防ぐ
