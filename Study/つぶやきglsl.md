@@ -54,6 +54,38 @@
 | ?                  | b       |        |      |
 | 出力画素値         | FC      | FC     |      |
 
+# デフォルトシェーダーの挙動(mode=classic)
+```glsl
+// つぶやきglslは「精度定義／外部入力定義／main関数」の3要素から成る
+/////////////////
+// 1.「精度定義」
+precision highp float; // ビット制度の定義(この場合は64bit float?)
+
+/////////////////
+// 2.「外部入力定義」
+uniform vec2 resolution;  // 解像度(例えばフルHD(横幅1920,縦幅1080)の場合はresolution=(1920,1080)
+uniform vec2 mouse; // マウス座標(例えばマウスがx=100,y=200の座標にいる場合、mouse=(100,200))
+uniform float time; // 経過時間(1秒間=1.0？)
+
+/////////////////
+// 3. 「main関数」
+void main(){ // 
+  vec2 r=resolution; // 短い名前の変数に置き換え
+  vec2 p=(gl_FragCoord.xy*2.-r)/min(r.y,r.x)-mouse; // 座標の正規化＆マウス対応
+  for(int i=0;i<8;++i){ // フラクタル処理
+    vec2 abs_p = abs(p); // 点対象化
+    float dot_p = dot(p,p); // 内積(x^2+y^2の放物線)
+
+    float offset = 0.9; // 振幅オフセット
+    float gain = cos(time*.2)*.4; // -0.4～0.4のcos(=sin)波(周期は31.415秒)
+  
+    p.xy=abs_p/dot_p-vec2(offset+gain); // 
+  }
+
+  // 出力画素値設定(R=x,G=x,B=y, αは何を入れても違いなし)
+  gl_FragColor=vec4(p.xxy,1);
+}
+```
 
 # 関数
 - dot: 内積
