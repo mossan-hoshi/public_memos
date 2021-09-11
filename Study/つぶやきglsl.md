@@ -6,6 +6,7 @@
   - [つぶやきGLSLのススメ](https://www.slideshare.net/yutakasato391/glsl-249579645)
   - [つぶやきGLSLで今すぐ使えるシェーダーminifyテクニック11選！](https://notargs.hateblo.jp/entry/twigl_minify)
   - [今日から使えるつぶやきGLSLのハック集](https://scrapbox.io/sayachang/%E4%BB%8A%E6%97%A5%E3%81%8B%E3%82%89%E4%BD%BF%E3%81%88%E3%82%8B%E3%81%A4%E3%81%B6%E3%82%84%E3%81%8DGLSL%E3%81%AE%E3%83%8F%E3%83%83%E3%82%AF%E9%9B%86)
+  - [SDF for raymarching (距離関数のスキル)](https://neort.io/product/bvcrf5s3p9f7gigeevf0)
 
 # モードによる違い
 
@@ -21,7 +22,7 @@
 | ディスプレイ解像度 |  resolution  |      r       |      r       |      r       |
 | マウス座標         |    mouse     |      m       |      m       |      m       |
 | 経過時間           |     time     |      t       |      t       |      t       |
-| 前フレーム                  |  backbuffer  |      b       |      b       |      b       |
+| 前フレーム         |  backbuffer  |      b       |      b       |      b       |
 | 画素座標           | gl_FragCoord | gl_FragCoord | gl_FragCoord |      FC      |
 | 出力画素値         | gl_FragColor | gl_FragColor | gl_FragColor | gl_FragColor |
 
@@ -88,14 +89,7 @@ void main(){ //
 ```
 
 # 関数
-- dot: 内積
-  - dot(p)
-  - p.x*p.x + p.y*p.y + p.z*p.z + p.a*p.a [pがVec4の場合]
-- abs: 絶対値
-- min/max
-- clamp
-- fract=clamp(val,0.0,1.0)
-- floor
+- [GLSLについてのメモ](https://qiita.com/edo_m18/items/71f6064f3355be7e4f45)
 # Tips・ルール
 - 値は0.0~1.0でクリップされる
 - 座標の正規化は主に3通り
